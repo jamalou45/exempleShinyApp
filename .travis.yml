@@ -14,7 +14,7 @@ apt_packages:
   - libudunits2-dev
   
 git:
-  depth false
+  depth: false
   
 r_packages:
   - ggplot2
