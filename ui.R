@@ -1,33 +1,19 @@
-#
-# This is the user-interface definition of a Shiny web application. You can
-# run the application by clicking 'Run App' above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    http://shiny.rstudio.com/
-#
-
 library(shiny)
 
-# Define UI for application that draws a histogram
 shinyUI(fluidPage(
 
-    # Application title
-    titlePanel("Old Faithful Geyser Data"),
-
-    # Sidebar with a slider input for number of bins
-    sidebarLayout(
-        sidebarPanel(
-            sliderInput("bins",
-                        "Number of bins:",
-                        min = 1,
-                        max = 50,
-                        value = 30)
-        ),
-
-        # Show a plot of the generated distribution
-        mainPanel(
-            plotOutput("distPlot")
-        )
+    shiny::tagList(tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "esaShinyApp.css"))),
+    
+    shiny::tags$div(
+        class = "titleBand",
+        p(id = "title", "Application Shiny Master ESA")    
+    ),
+    fluidRow(
+        column(3, shiny::tags$div(class = "titleBand", list(selectizeInput("depChoice", "Département", choices = c(1:95), selected = 45, multiple = T),
+                                                            selectInput("sexeChoice", "Sexe", choices = c("Tous" = 0, "Femme" = 1, "Homme" = 2), selected = 0),
+                                                            dateRangeInput("datesRange", "Dates", start = "2020-03-18", end = Sys.Date()-1, min = "2020-03-18", max = Sys.Date()-1, format = "dd/mm/yyyy", language = "fr"),
+                                                            hr(),
+                                                            actionButton("launchGraph", "Lancer !")))),
+        column(9, shiny::tags$div(plotOutput("hospPlot")))
     )
 ))
