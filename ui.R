@@ -6,7 +6,7 @@ shinyUI(fluidPage(
     
     shiny::tags$div(
         class = "titleBand",
-        p(id = "title", "Application Shiny Master ESA")    
+        p(id = "title", "Application Shiny Master ESA Jamal")    
     ),
     fluidRow(
         column(3, shiny::tags$div(class = "titleBand", list(selectizeInput("depChoice", "Département", choices = c(1:95), selected = 45, multiple = T),
